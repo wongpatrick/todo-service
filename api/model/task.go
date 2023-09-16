@@ -17,6 +17,10 @@ type (
 		Status      Status `json:"status"`
 		UserId      uint   `json:"userId"`
 		CreatedAt   string `json:"createdAt"`
-		ModifiedAt  string `json:"modifiedAt"` 
+		ModifiedAt  string `json:"modifiedAt"`
+	}
+
+	TaskParams struct {
+		UserId *uint `json:"userId"`
 	}
 )
