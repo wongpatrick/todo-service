@@ -14,4 +14,5 @@ CREATE TABLE todoapp.task (
   description TEXT,
   status VARCHAR(50) NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
+  modified_at TIMESTAMP DEFAULT NOW(),
 );
