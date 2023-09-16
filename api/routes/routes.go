@@ -14,7 +14,7 @@ func SetupRoutes(r *gin.Engine) {
 
 	// Task routes
 	v1.GET("/task", task.GET)
-	v1.POST("/task")
-	v1.PATCH("/task/:id")
-	v1.DELETE("/task/:id")
+	v1.POST("/task", task.POST)
+	v1.PATCH("/task/:id", task.PATCH)
+	v1.DELETE("/task/:id", task.DELETE)
 }
