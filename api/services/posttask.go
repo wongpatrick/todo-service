@@ -8,19 +8,19 @@ import (
 )
 
 // POST task
-func PostTask(taskParams model.CreateTaskParams) (model.Task, error) {
+func PostTask(taskParams model.CreateTaskParams) (uint, error) {
 	// Should verify if user can create task for this user but that is authentication
 	cleanedParams, validateErr := validatePostTask(taskParams)
 	if validateErr != nil {
 		// LOG
-		return model.Task{}, validateErr
+		return 0, validateErr
 	}
-	createdTask, err := repository.CreateTask(cleanedParams)
+	createdTaskId, err := repository.CreateTask(cleanedParams)
 	if err != nil {
 		// LOG
-		return model.Task{}, err
+		return 0, err
 	}
-	return createdTask, nil
+	return createdTaskId, nil
 }
 
 func validatePostTask(taskParams model.CreateTaskParams) (model.CreateTaskParams, error) {
