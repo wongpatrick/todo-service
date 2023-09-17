@@ -7,9 +7,8 @@ import (
 )
 
 func DeleteTask(taskId int) error {
-	uintTaskId := uint(taskId)
 	taskParams := model.TaskParams{
-		Id: &uintTaskId,
+		Id: &taskId,
 	}
 	// Verify if task exists
 	task, err := repository.FetchTask(taskParams)
@@ -25,7 +24,7 @@ func DeleteTask(taskId int) error {
 	patchTaskParams := model.PatchTaskParams{
 		Status: &ptrDelete,
 	}
-	patchErr := repository.PatchTask(uintTaskId, patchTaskParams)
+	patchErr := repository.PatchTask(uint(taskId), patchTaskParams)
 	if patchErr != nil {
 		return err
 	}

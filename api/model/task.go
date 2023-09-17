@@ -28,8 +28,8 @@ type (
 	}
 
 	TaskParams struct {
-		Id     *uint `json:"id"`
-		UserId *uint `json:"userId"`
+		Id     *int `form:"id"`
+		UserId *int `form:"userid"`
 	}
 
 	CreateTaskParams struct {

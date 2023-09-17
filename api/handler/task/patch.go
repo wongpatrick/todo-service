@@ -40,7 +40,7 @@ func PATCH(c *gin.Context) {
 		})
 		return
 	}
-	err = services.PatchTask(uint(aid), updateTask)
+	err = services.PatchTask(aid, updateTask)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": err,

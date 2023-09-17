@@ -8,7 +8,7 @@ import (
 )
 
 // Post buyer bid after validating
-func PatchTask(id uint, task model.PatchTaskParams) error {
+func PatchTask(id int, task model.PatchTaskParams) error {
 	taskParams := model.TaskParams{
 		Id: &id,
 	}
@@ -22,7 +22,7 @@ func PatchTask(id uint, task model.PatchTaskParams) error {
 		return errors.New("Cannot find task")
 	}
 
-	patchErr := repository.PatchTask(id, task)
+	patchErr := repository.PatchTask(uint(id), task)
 	if patchErr != nil {
 		return err
 	}

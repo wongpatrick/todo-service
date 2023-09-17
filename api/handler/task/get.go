@@ -24,12 +24,19 @@ import (
 func GET(c *gin.Context) {
 	log.Printf("FETCH")
 	var taskParams model.TaskParams
-	if c.ShouldBind(&taskParams) == nil {
+	if c.ShouldBind(&taskParams) != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "Bad Request",
 		})
 		return
 	}
+	if taskParams.Id == nil && taskParams.UserId == nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Bad Request",
+		})
+		return
+	}
+
 	data, err := services.FetchTaskForUser(taskParams)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
