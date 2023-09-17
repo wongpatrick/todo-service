@@ -16,7 +16,7 @@ import (
 // @Accept       json
 // @Produce      json
 // @Param        id    path     int true "Task ID" Format(uint)
-// @Success      204  {array}   model.Task
+// @Success      204  {object}   model.Task
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError

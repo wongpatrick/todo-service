@@ -3,14 +3,11 @@ package task
 import (
 	"log"
 	"net/http"
-	"strconv"
 	"todo-service/api/model"
 	"todo-service/api/services"
 
 	"github.com/gin-gonic/gin"
 )
-
-// TODO MODIFY THIS TO DO POST AND NOT PATCH
 
 // POST Task
 // @Summary      Create a task
@@ -18,36 +15,27 @@ import (
 // @Tags         task
 // @Accept       json
 // @Produce      json
-// @Param		 task body model.Task true "Add Task"
-// @Success      204  {array}   model.Task
+// @Param		 task body model.CreateTaskParams true "Add Task"
+// @Success      201  {object}  model.Task
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError
 // @Router       /v1/task/ [post]
 func POST(c *gin.Context) {
-	log.Printf("PATCH")
-	id := c.Param("id")
-	aid, err := strconv.Atoi(id)
-	if err != nil {
+	log.Printf("POST")
+	var taskToCreate model.CreateTaskParams
+	if err := c.ShouldBindJSON(&taskToCreate); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "Bad Request",
 		})
 		return
 	}
-	var updateTask model.Task
-	if err = c.ShouldBindJSON(&updateTask); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"message": "Bad Request",
-		})
-		return
-	}
-	updateTask.Id = uint(aid)
-	err = services.PatchTask(updateTask)
-	if err != nil {
+	created, postErr := services.PostTask(taskToCreate)
+	if postErr != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": err,
+			"message": postErr,
 		})
 		return
 	}
-	c.JSON(http.StatusNoContent, gin.H{})
+	c.JSON(http.StatusCreated, created)
 }

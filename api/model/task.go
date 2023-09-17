@@ -24,4 +24,10 @@ type (
 		Id     *uint `json:"id"`
 		UserId *uint `json:"userId"`
 	}
+
+	CreateTaskParams struct {
+		Title       string `json:"title"`
+		Description string `json:"description"`
+		UserId      uint   `json:"userId"`
+	}
 )

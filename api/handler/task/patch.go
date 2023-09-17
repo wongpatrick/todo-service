@@ -12,13 +12,13 @@ import (
 
 // PATCH Task
 // @Summary      PATCH a task
-// @Description  Patch task based on the task id
+// @Description  Modify a task based on the task id
 // @Tags         task
 // @Accept       json
 // @Produce      json
 // @Param        id    path     int true "Task ID" Format(uint)
 // @Param		 task body model.Task true "Update Task"
-// @Success      204  {array}   model.Task
+// @Success      204  {object}   model.Task
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError
