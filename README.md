@@ -15,6 +15,11 @@ TODO Web Service is a web API that would manage a to do list. Authentication is 
 
     go test
 
+## Run with Docker
+
+    docker build -t todo-service .
+    docker run --rm -p 8080:8080 todo-service
+
 ## REST API
 The REST API for the TODO web service is described below.
 
