@@ -17,7 +17,7 @@ import (
 // @Accept       json
 // @Produce      json
 // @Param        id    path     int true "Task ID" Format(uint)
-// @Param		 task body model.Task true "Update Task"
+// @Param		 task body model.PatchTaskParams true "Update Task"
 // @Success      204  {object}   model.Task
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
@@ -33,15 +33,14 @@ func PATCH(c *gin.Context) {
 		})
 		return
 	}
-	var updateTask model.Task
+	var updateTask model.PatchTaskParams
 	if err = c.ShouldBindJSON(&updateTask); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "Bad Request",
 		})
 		return
 	}
-	updateTask.Id = uint(aid)
-	err = services.PatchTask(updateTask)
+	err = services.PatchTask(uint(aid), updateTask)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": err,
