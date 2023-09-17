@@ -20,7 +20,7 @@ import (
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError
-// @Router       /task/{id} [delete]
+// @Router       /v1/task/{id} [delete]
 func DELETE(c *gin.Context) {
 	log.Printf("DELETE")
 	id := c.Param("id")

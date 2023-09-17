@@ -12,19 +12,18 @@ import (
 
 // TODO MODIFY THIS TO DO POST AND NOT PATCH
 
-// PATCH Task
-// @Summary      PATCH a task
-// @Description  Patch task based on the task id
+// POST Task
+// @Summary      Create a task
+// @Description  Create a task by JSON
 // @Tags         task
 // @Accept       json
 // @Produce      json
-// @Param        id    path     int true "Task ID" Format(uint)
-// @Param		 task body model.Task true "Update Task"
+// @Param		 task body model.Task true "Add Task"
 // @Success      204  {array}   model.Task
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError
-// @Router       /task/{id} [delete]
+// @Router       /v1/task/ [post]
 func POST(c *gin.Context) {
 	log.Printf("PATCH")
 	id := c.Param("id")

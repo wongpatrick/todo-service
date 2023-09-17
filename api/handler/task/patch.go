@@ -22,7 +22,7 @@ import (
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError
-// @Router       /task/{id} [delete]
+// @Router       /v1/task/{id} [delete]
 func PATCH(c *gin.Context) {
 	log.Printf("PATCH")
 	id := c.Param("id")

@@ -20,7 +20,7 @@ import (
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError
-// @Router       /task [get]
+// @Router       /v1/task [get]
 func GET(c *gin.Context) {
 	log.Printf("FETCH")
 	var taskParams model.TaskParams
