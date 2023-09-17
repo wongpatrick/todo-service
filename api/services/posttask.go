@@ -10,7 +10,7 @@ import (
 // POST task
 func PostTask(taskParams model.CreateTaskParams) (model.Task, error) {
 	// Should verify if user can create task for this user but that is authentication
-	cleanedParams, validateErr := validateTask(taskParams)
+	cleanedParams, validateErr := validatePostTask(taskParams)
 	if validateErr != nil {
 		// LOG
 		return model.Task{}, validateErr
@@ -23,7 +23,7 @@ func PostTask(taskParams model.CreateTaskParams) (model.Task, error) {
 	return createdTask, nil
 }
 
-func validateTask(taskParams model.CreateTaskParams) (model.CreateTaskParams, error) {
+func validatePostTask(taskParams model.CreateTaskParams) (model.CreateTaskParams, error) {
 	taskParams.Description = strings.TrimSpace(taskParams.Description)
 	if len(taskParams.Description) == 0 {
 		return model.CreateTaskParams{}, errors.New("Empty Description")

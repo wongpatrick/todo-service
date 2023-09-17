@@ -9,6 +9,13 @@ const (
 	Deleted Status = "D"
 )
 
+func IsValidStatus(str string) bool {
+	if str == Active || str == Complete || str == Deleted {
+		return true
+	}
+	return false
+}
+
 type (
 	Task struct {
 		Id          uint    `json:"id"`
@@ -29,5 +36,11 @@ type (
 		Title       string `json:"title"`
 		Description string `json:"description"`
 		UserId      uint   `json:"userId"`
+	}
+
+	PatchTaskParams struct {
+		Title       *string `json:"title"`
+		Description *string `json:"description"`
+		Status      *Status `json:"status"`
 	}
 )

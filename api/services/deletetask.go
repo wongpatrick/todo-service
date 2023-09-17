@@ -22,11 +22,10 @@ func DeleteTask(taskId int) error {
 	}
 
 	ptrDelete := model.Deleted
-	patchTaskParams := model.Task{
-		Id:     uintTaskId,
+	patchTaskParams := model.PatchTaskParams{
 		Status: &ptrDelete,
 	}
-	patchErr := repository.PatchTask(patchTaskParams)
+	patchErr := repository.PatchTask(uintTaskId, patchTaskParams)
 	if patchErr != nil {
 		return err
 	}
