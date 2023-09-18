@@ -33,7 +33,7 @@ func POST(c *gin.Context) {
 	created, postErr := services.PostTask(taskToCreate)
 	if postErr != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": postErr,
+			"message": postErr.Error(),
 		})
 		return
 	}

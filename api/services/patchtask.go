@@ -12,13 +12,14 @@ func PatchTask(id int, task model.PatchTaskParams) error {
 	taskParams := model.TaskParams{
 		Id: &id,
 	}
+
 	// Verify if task exists
 	foundTasks, err := repository.FetchTask(taskParams)
 	if err != nil {
 		return err
 	}
 
-	if len(foundTasks) != 0 {
+	if len(foundTasks) == 0 {
 		return errors.New("Cannot find task")
 	}
 

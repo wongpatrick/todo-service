@@ -20,7 +20,7 @@ func CreateTask(task model.CreateTaskParams) (uint, error) {
 	log.Printf(insertQuery.ToSql())
 
 	var id uint
-	err := insertQuery.RunWith(db).QueryRow().Scan(&id)
+	err := insertQuery.RunWith(db).PlaceholderFormat(sq.Dollar).QueryRow().Scan(&id)
 
 	if err != nil {
 		log.Printf(err.Error())
@@ -31,7 +31,7 @@ func CreateTask(task model.CreateTaskParams) (uint, error) {
 }
 
 func buildTaskInsert(taskParams model.CreateTaskParams) sq.InsertBuilder {
-	insert := sq.Insert("task").
+	insert := sq.Insert("todoapp.task").
 		Columns("user_id", "title", "description", "status").
 		Values(taskParams.UserId, taskParams.Title, taskParams.Description, model.Active).
 		Suffix("RETURNING \"id\"")

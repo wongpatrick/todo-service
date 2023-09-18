@@ -49,17 +49,17 @@ func FetchTask(taskParams model.TaskParams) ([]model.Task, error) {
 }
 
 func buildTaskQuery(taskParams model.TaskParams) sq.SelectBuilder {
-	query := sq.Select("*").From("task")
+	psql := sq.StatementBuilder.PlaceholderFormat(sq.Dollar)
+	query := psql.Select("*").From("todoapp.task")
 
 	if taskParams.UserId != nil {
-		query.Where(sq.Eq{"user_id": taskParams.UserId})
+		query = query.Where(sq.Eq{"user_id": &taskParams.UserId})
 	}
-
 	if taskParams.Id != nil {
-		query.Where(sq.Eq{"id": taskParams.Id})
+		query = query.Where(sq.Eq{"id": &taskParams.Id})
 	}
 
-	query.Where(sq.NotEq{"status": model.Deleted})
+	query = query.Where(sq.NotEq{"status": model.Deleted})
 
 	return query
 }

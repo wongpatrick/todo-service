@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"log"
 	"strings"
 	"todo-service/api/model"
 	"todo-service/api/repository"
@@ -13,11 +14,13 @@ func PostTask(taskParams model.CreateTaskParams) (uint, error) {
 	cleanedParams, validateErr := validatePostTask(taskParams)
 	if validateErr != nil {
 		// LOG
+		log.Printf(validateErr.Error())
 		return 0, validateErr
 	}
 	createdTaskId, err := repository.CreateTask(cleanedParams)
 	if err != nil {
 		// LOG
+		log.Printf(err.Error())
 		return 0, err
 	}
 	return createdTaskId, nil

@@ -18,7 +18,7 @@ func PatchTask(id uint, taskParams model.PatchTaskParams) error {
 
 	updateQuery := buildTaskUpdate(id, taskParams)
 	log.Printf(updateQuery.ToSql())
-	_, err := updateQuery.RunWith(db).Query()
+	_, err := updateQuery.RunWith(db).PlaceholderFormat(sq.Dollar).Query()
 
 	if err != nil {
 		log.Printf(err.Error())
@@ -29,20 +29,20 @@ func PatchTask(id uint, taskParams model.PatchTaskParams) error {
 }
 
 func buildTaskUpdate(id uint, taskParams model.PatchTaskParams) sq.UpdateBuilder {
-	update := sq.Update("task").Where("id", id)
+	update := sq.Update("todoapp.task").Where(sq.Eq{"id": id})
 
-	update.Set("ModifiedAt", time.Now())
+	update = update.Set("modified_at", time.Now())
 
 	if taskParams.Title != nil {
-		update.Set("title", *taskParams.Title)
+		update = update.Set("title", *taskParams.Title)
 	}
 
 	if taskParams.Description != nil {
-		update.Set("description", *taskParams.Description)
+		update = update.Set("description", *taskParams.Description)
 	}
 
 	if taskParams.Status != nil {
-		update.Set("status", *taskParams.Status)
+		update = update.Set("status", *taskParams.Status)
 	}
 
 	return update

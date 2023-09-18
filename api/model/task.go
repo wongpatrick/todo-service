@@ -29,7 +29,7 @@ type (
 
 	TaskParams struct {
 		Id     *int `form:"id"`
-		UserId *int `form:"userid"`
+		UserId *int `form:"userId"`
 	}
 
 	CreateTaskParams struct {
