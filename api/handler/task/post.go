@@ -16,7 +16,7 @@ import (
 // @Accept       json
 // @Produce      json
 // @Param		 task body model.CreateTaskParams true "Add Task"
-// @Success      201  {object}  model.Task
+// @Success      201  {int}  int
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError
