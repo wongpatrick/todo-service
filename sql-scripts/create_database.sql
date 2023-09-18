@@ -3,7 +3,7 @@ CREATE SCHEMA todoapp ;
 CREATE TABLE todoapp.user (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL
 );
 
 
@@ -14,5 +14,5 @@ CREATE TABLE todoapp.task (
   description TEXT,
   status VARCHAR(50) NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
-  modified_at TIMESTAMP DEFAULT NOW(),
+  modified_at TIMESTAMP DEFAULT NOW()
 );
