@@ -1,6 +1,6 @@
 # TODO Web Service
 
-TODO Web Service is a web API that would manage a to-do list. Authentication is left out on purpose. So validation for users is left out on purpose.
+TODO Web Service is a web API that would manage a to-do list. Authentication is left out on purpose. So management/validation for users is left out on purpose.
 
 You can search for tasks for a user or look for an individual task id.
 
