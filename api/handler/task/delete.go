@@ -34,7 +34,7 @@ func DELETE(c *gin.Context) {
 	err = services.DeleteTask(aid)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": err,
+			"message": err.Error(),
 		})
 		return
 	}

@@ -16,7 +16,7 @@ func DeleteTask(taskId int) error {
 		return err
 	}
 
-	if len(task) != 0 {
+	if len(task) == 0 {
 		return errors.New("Cannot find task")
 	}
 

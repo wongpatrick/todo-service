@@ -59,7 +59,9 @@ func buildTaskQuery(taskParams model.TaskParams) sq.SelectBuilder {
 		query = query.Where(sq.Eq{"id": &taskParams.Id})
 	}
 
-	query = query.Where(sq.NotEq{"status": model.Deleted})
+	if taskParams.Id == nil {
+		query = query.Where(sq.NotEq{"status": model.Deleted})
+	}
 
 	return query
 }
