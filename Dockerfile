@@ -1,9 +1,13 @@
 FROM golang:1.21
 
-WORKDIR /go/src/app
+RUN mkdir /app
 
-COPY . .
+ADD . /app
 
-RUN go build -o main main.go
+WORKDIR /app
 
-CMD ["./main"]
+RUN go build -o app main.go
+
+EXPOSE 8080:8080
+
+CMD ["./app"]
